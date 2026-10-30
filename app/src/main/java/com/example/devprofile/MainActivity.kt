@@ -20,28 +20,38 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         setContent {
             DevProfileTheme {
-                EcranProfil()
+                EcranProfil(
+                    nom = "Lilou Jamin",
+                    role = "Etudiante en master d'informatique",
+                    description = "Passionnée par le développement web, je souhaite devenir développeuse fullstack ",
+                    competences = listOf("VueJS","Node", "Python"),
+                    disponibilite = "Disponible pour une alternance",
+                )
             }
         }
+
     }
 }
 
+
 @Composable
-fun EcranProfil(modifier: Modifier = Modifier) {
+fun EcranProfil(nom: String, role: String, description: String, competences: List<String>, disponibilite: String, modifier: Modifier = Modifier) {
     FicheProfil(
-        nom = "Lilou Jamin",
-        role = "Etudiante en master d'informatique",
-        description = "Passionnée par le développement web, je souhaite devenir développeuse fullstack ",
-        competences = listOf("VueJS","Node", "Python"),
-        disponibilite = "Disponible pour une alternance",
+        nom = nom,
+        role = role,
+        description = description,
+        competences = competences,
+        disponibilite = disponibilite,
         onContactClick = {},
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
     )
 }
+
 
 
 @Composable
@@ -99,10 +109,41 @@ fun FicheProfil(nom: String, role: String, description: String, competences: Lis
     }
 }
 
-@Preview(showBackground = true)
+@Preview(
+    name = "Profil Android Junior",
+    showBackground = true
+)
 @Composable
-fun PreviewProfil() {
+fun PreviewProfilAndroid() {
     DevProfileTheme {
-        EcranProfil()
+        EcranProfil(
+            nom = "Alex Martin",
+            role = "Développeur Android Junior",
+            description = "Passionné par le développement mobile, " +
+                    "je crée des applications Android simples et accessibles.",
+            competences = listOf(
+                "Kotlin",
+                "Jetpack Compose",
+                "Git / GitHub"
+            ),
+            disponibilite = "Disponible pour une alternance"
+        )
+    }
+}
+
+@Preview(
+    name = "Profil Full-Stack",
+    showBackground = true
+)
+@Composable
+fun PreviewProfilFullStack() {
+    DevProfileTheme {
+        EcranProfil(
+            nom = "Gabriel DUPONT",
+            role = "Développeur android",
+            description = "Spécialisé en développement d'applictations mobiles, je crée des applications modernes et performantes",
+            competences = listOf("Kotlin", "Java","Android Studio"),
+            disponibilite = "Embauché chez Google"
+        )
     }
 }
