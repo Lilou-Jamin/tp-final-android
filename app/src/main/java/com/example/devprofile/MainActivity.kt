@@ -140,29 +140,24 @@ fun FicheProfil(nom: String, role: String, description: String, competences: Lis
 }
 
 @Preview(
-    name = "Profil Android Junior",
+    name = "Profil Fullstack",
     showBackground = true
 )
 @Composable
 fun PreviewProfilAndroid() {
     DevProfileTheme {
         EcranProfil(
-            nom = "Alex Martin",
-            role = "Développeur Android Junior",
-            description = "Passionné par le développement mobile, " +
-                    "je crée des applications Android simples et accessibles.",
-            competences = listOf(
-                "Kotlin",
-                "Jetpack Compose",
-                "Git / GitHub"
-            ),
+            nom = "Lilou Jamin",
+            role = "Etudiante en master d'informatique",
+            description = "Passionnée par le développement web, je crée des applications web",
+            competences = listOf("VueJS","Node","Git / GitHub"),
             disponibilite = "Disponible pour une alternance"
         )
     }
 }
 
 @Preview(
-    name = "Profil Full-Stack",
+    name = "Profil Android",
     showBackground = true
 )
 @Composable
