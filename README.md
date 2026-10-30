@@ -63,4 +63,5 @@ Mes composants sont réutilisables car les informations sont passées en params 
 J'ai aussi ajouté modifier: Modifier = Modifier dans mes composables pour pouvoir changer leur placement depuis le composant parent.
 
 ## Resultat final de l'application
+![Screen des previews](previews.png)
 ![Screen de l'application](application.png)
