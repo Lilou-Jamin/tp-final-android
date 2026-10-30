@@ -15,6 +15,10 @@ import androidx.compose.ui.unit.dp
 import com.example.devprofile.ui.theme.DevProfileTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Button
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +40,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
 @Composable
 fun EcranProfil(nom: String, role: String, description: String, competences: List<String>, disponibilite: String, modifier: Modifier = Modifier) {
     FicheProfil(
@@ -46,13 +49,12 @@ fun EcranProfil(nom: String, role: String, description: String, competences: Lis
         competences = competences,
         disponibilite = disponibilite,
         onContactClick = {},
+        onDisponibiliteClick = {},
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
     )
 }
-
-
 
 @Composable
 fun EnteteProfil(nom: String, role: String, modifier: Modifier = Modifier) {
@@ -81,6 +83,30 @@ fun CompetenceProfil(competence: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun DisponibiliteProfil(
+    disponibilite: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .semantics {
+                contentDescription = "Consulter la disponibilité : $disponibilite"
+            }
+            .clickable(
+                role = Role.Button,
+                onClick = onClick
+            )
+    ) {
+        Text(
+            text = disponibilite,
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
+
+@Composable
 fun ActionProfil(texte: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Button(
         onClick = onClick,
@@ -92,7 +118,7 @@ fun ActionProfil(texte: String, onClick: () -> Unit, modifier: Modifier = Modifi
 
 
 @Composable
-fun FicheProfil(nom: String, role: String, description: String, competences: List<String>, disponibilite: String, onContactClick: () -> Unit, modifier: Modifier = Modifier) {
+fun FicheProfil(nom: String, role: String, description: String, competences: List<String>, disponibilite: String, onContactClick: () -> Unit, onDisponibiliteClick: () -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
     ) {
@@ -104,7 +130,11 @@ fun FicheProfil(nom: String, role: String, description: String, competences: Lis
             CompetenceProfil(competence = competence)
         }
 
-        Text(text = disponibilite, modifier = Modifier.padding(8.dp))
+        DisponibiliteProfil(
+            disponibilite = disponibilite,
+            onClick = onDisponibiliteClick,
+            modifier = Modifier.padding(8.dp)
+        )
         ActionProfil(texte = "Me contacter", onClick = onContactClick, modifier = Modifier.padding(8.dp))
     }
 }
